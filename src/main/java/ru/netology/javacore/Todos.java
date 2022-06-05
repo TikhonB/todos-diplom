@@ -3,16 +3,29 @@ package ru.netology.javacore;
 import java.util.*;
 
 public class Todos {
-    public String type;
-    public String task;
-    public List<String> todosList = new ArrayList<>();
+
+    protected List<String> todosList;
+
+    public Todos() {
+        todosList = new ArrayList<>();
+    }
 
     public void addTask(String task) {
-        todosList.add(task);
+        if (todosList.contains(task))
+            System.out.println(task +" уже есть в списке дел");
+        else {
+            todosList.add(task);
+            System.out.println("Была добавлена задача " + task);
+        }
     }
 
     public void removeTask(String task) {
-        todosList.remove(task);
+        if (todosList.contains(task)) {
+            todosList.remove(task);
+            System.out.println(task+" задача была удалена");
+        } else {
+            System.out.println(task+ " задачи не существует");
+        }
     }
 
     public String getAllTasks() {
@@ -25,9 +38,4 @@ public class Todos {
         }
         return builder.toString();
     }
-
-//    @Override
-//    public String toString(){
-//        return "TODOs: [ " + todosList + " ]";
-//    }
 }
